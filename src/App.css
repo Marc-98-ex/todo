@@ -1,0 +1,92 @@
+/* Allgemeines Styling für die App */
+.App {
+  text-align: center;
+  background-color: #007bff; /* Blau als Hintergrundfarbe */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Positionierung der Elemente nach oben */
+  font-family: Arial, sans-serif; /* Schriftart */
+  color: white;
+}
+
+/* Überschrift der App (Todo App) größer und auffälliger */
+h1 {
+  font-size: 3rem; /* Größere Schrift für die Überschrift */
+  margin-top: 20px;
+}
+
+/* Styling für das Formular und die Eingabefelder */
+form {
+  margin-top: 20px;
+}
+
+/* Container für die Aufgabenliste */
+div.task-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Stellt sicher, dass Aufgaben untereinander angeordnet werden */
+  align-items: center; /* Zentriert die Aufgaben */
+  margin-top: 20px; /* Etwas Abstand nach oben */
+}
+
+/* Aufgaben im lila Kasten */
+div.task-item {
+  background-color: #9b59b6; /* Lila Kasten */
+  margin: 10px 0; /* Abstand zwischen den Aufgaben */
+  padding: 15px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 8px; /* Abgerundete Ecken */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schattierung für den Kasten */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Buttons verbessern (optisch ansprechend) */
+button {
+  background-color: #ffffff;
+  color: #333333;
+  border: 2px solid #9b59b6; /* Lila Rahmen */
+  border-radius: 5px; /* Abgerundete Ecken */
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s; /* Übergangseffekt */
+}
+
+button:hover {
+  background-color: #9b59b6; /* Lila Hintergrund bei Hover */
+  color: white; /* Textfarbe wird weiß */
+}
+
+/* Eingabefeld für die Aufgabe */
+input[type="text"] {
+  padding: 10px;
+  width: 70%;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #9b59b6;
+  margin-right: 10px;
+}
+
+/* Submit-Button für das Formular */
+input[type="submit"] {
+  background-color: #9b59b6; /* Lila Hintergrund */
+  color: white;
+  border: 2px solid #9b59b6;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+input[type="submit"]:hover {
+  background-color: #8e44ad; /* Etwas dunkleres Lila bei Hover */
+}
+
+
+
+
