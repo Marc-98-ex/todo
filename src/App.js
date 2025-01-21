@@ -1,52 +1,72 @@
 import './App.css';
-import { useState } from 'react';
-import TaskForm from './TaskForm';
-import TaskList from './TaskList';
+import React, { useState, useEffect } from 'react';
+import ItemList from './components/ItemList';
 
 function App() {
-  const [taskList, setTaskList] = useState([]); // Aufgabenliste
+  const [tasks, setTasks] = useState([]); // Anfangsliste der Aufgaben
+  const [inputValue, setInputValue] = useState(''); // Zustand für das Eingabefeld
+  const [benutzer, setBenutzer] = useState([]); // Zustand für Benutzer (nicht benutzt im Code, könnte entfernt werden)
 
-  // Funktion, um eine neue Aufgabe hinzuzufügen
-  const addTask = (taskText) => {
-    setTaskList([...taskList, { text: taskText, completed: false }]);
+  // Aufgabe hinzufügen
+  const addTask = () => {
+    if (inputValue.trim() !== '') {
+      const newTask = {
+        id: tasks.length + 1,
+        text: inputValue,
+        status: 'New',
+      };
+      setTasks([...tasks, newTask]); // Neue Aufgabe hinzufügen
+      setInputValue(''); // Eingabefeld zurücksetzen
+    }
   };
 
-  // Funktion, um eine bestehende Aufgabe zu aktualisieren
-  const updateTask = (index, updatedText) => {
-    const updatedTaskList = taskList.map((t, i) =>
-      i === index ? { ...t, text: updatedText } : t
+  // Aufgabe löschen
+  const deleteTask = (taskId) => {
+    const updatedTaskList = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTaskList); // Aufgabe löschen
+  };
+
+  // Aufgabe als erledigt markieren
+  const toggleComplete = (taskId) => {
+    const updatedTaskList = tasks.map((task) =>
+      task.id === taskId
+        ? { ...task, status: task.status === 'Done' ? 'New' : 'Done' }
+        : task
     );
-    setTaskList(updatedTaskList); // Aufgabenliste aktualisieren
+    setTasks(updatedTaskList); // Aufgabe aktualisieren
   };
 
-  // Funktion, um eine Aufgabe zu löschen
-  const handleDelete = (deletingTask) => {
-    const updatedTaskList = taskList.filter((t) => t.text !== deletingTask.text);
-    setTaskList(updatedTaskList);
-  };
-
-  // Funktion, um den Erledigt-Status einer Aufgabe zu ändern
-  const toggleComplete = (taskToToggle) => {
-    const updatedTaskList = taskList.map((t) =>
-      t.text === taskToToggle.text ? { ...t, completed: !t.completed } : t
+  // Aufgabe bearbeiten
+  const updateTask = (id, updatedText) => {
+    const updatedTaskList = tasks.map((task) =>
+      task.id === id ? { ...task, text: updatedText } : task
     );
-    setTaskList(updatedTaskList);
+    setTasks(updatedTaskList); // Aufgabenliste mit bearbeitetem Text aktualisieren
   };
 
   return (
     <div className="App">
       <h1>Todo App</h1>
-      {/* TaskList zeigt alle Aufgaben */}
-      <TaskList
-        taskList={taskList}
-        toggleComplete={toggleComplete}
-        handleDelete={handleDelete}
-        updateTask={updateTask}
+
+      {/* Eingabefeld zum Hinzufügen einer neuen Aufgabe */}
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Neue Aufgabe hinzufügen"
       />
-      {/* TaskForm ermöglicht es, Aufgaben hinzuzufügen und zu bearbeiten */}
-      <TaskForm addTask={addTask} updateTask={updateTask} taskList={taskList} />
+      <button onClick={addTask}>Add Task</button>
+
+      {/* Anzeige der Aufgaben */}
+      <ItemList
+        tasks={tasks}
+        updateTask={updateTask}
+        deleteTask={deleteTask}
+        toggleComplete={toggleComplete}
+      />
     </div>
   );
 }
 
 export default App;
+

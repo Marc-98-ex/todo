@@ -87,6 +87,29 @@ input[type="submit"]:hover {
   background-color: #8e44ad; /* Etwas dunkleres Lila bei Hover */
 }
 
+.ItemList{
+  width: 100%;
+}
+
+.item-container{
+  margin-bottom: 20px;
+  width: 100%;
+
+}
+
+
+div.New{
+
+ background-color: red;
+}
+div.Done{
+
+ background-color: green;
+}
+div.Edit{
+
+  background-color: purple;
+ }
 
 
 
