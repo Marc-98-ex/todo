@@ -1,0 +1,13 @@
+.countryItem-container {
+    height:350px;
+   
+  }
+  
+  .image-container {
+    width: 40%;
+    display: none;
+  }
+  
+  .desc-container {
+    width: 40%;
+  }  

@@ -1,63 +1,70 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
+import './style/App.css';
+
+
+
+import { apiAdd, apiGetTasks } from './api'; 
+
+import React, { useState } from 'react';
 import ItemList from './components/ItemList';
 
 function App() {
-  const [tasks, setTasks] = useState([]); // Anfangsliste der Aufgaben
-  const [inputValue, setInputValue] = useState(''); // Zustand für das Eingabefeld
-  const [benutzer, setBenutzer] = useState([]); // Zustand für Benutzer (nicht benutzt im Code, könnte entfernt werden)
+  const myApiList = apiGetTasks();
 
-  // Aufgabe hinzufügen
+  const [tasks, setTasks] = useState(myApiList);
+  const [inputValue, setInputValue] = useState('');
+
   const addTask = () => {
-    if (inputValue.trim() !== '') {
+    if (inputValue.trim()) {
+
       const newTask = {
         id: tasks.length + 1,
         text: inputValue,
         status: 'New',
+        mumu : "hugo"
       };
-      setTasks([...tasks, newTask]); // Neue Aufgabe hinzufügen
-      setInputValue(''); // Eingabefeld zurücksetzen
+
+
+      setTasks((prevTasks) => [...prevTasks, newTask]);
+      setInputValue('');
+
+      apiAdd(newTask);
     }
   };
 
-  // Aufgabe löschen
   const deleteTask = (taskId) => {
-    const updatedTaskList = tasks.filter((task) => task.id !== taskId);
-    setTasks(updatedTaskList); // Aufgabe löschen
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
   };
 
-  // Aufgabe als erledigt markieren
   const toggleComplete = (taskId) => {
-    const updatedTaskList = tasks.map((task) =>
-      task.id === taskId
-        ? { ...task, status: task.status === 'Done' ? 'New' : 'Done' }
-        : task
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId
+          ? { ...task, status: task.status === 'Done' ? 'New' : 'Done' }
+          : task
+      )
     );
-    setTasks(updatedTaskList); // Aufgabe aktualisieren
   };
 
-  // Aufgabe bearbeiten
   const updateTask = (id, updatedText) => {
-    const updatedTaskList = tasks.map((task) =>
-      task.id === id ? { ...task, text: updatedText } : task
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, text: updatedText } : task
+      )
     );
-    setTasks(updatedTaskList); // Aufgabenliste mit bearbeitetem Text aktualisieren
   };
 
   return (
     <div className="App">
       <h1>Todo App</h1>
-
-      {/* Eingabefeld zum Hinzufügen einer neuen Aufgabe */}
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Neue Aufgabe hinzufügen"
-      />
-      <button onClick={addTask}>Add Task</button>
-
-      {/* Anzeige der Aufgaben */}
+      <div className="task-input">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Neue Aufgabe hinzufügen"
+        />
+        <button onClick={addTask}>Add Task</button>
+      </div>
       <ItemList
         tasks={tasks}
         updateTask={updateTask}
@@ -69,4 +76,3 @@ function App() {
 }
 
 export default App;
-
