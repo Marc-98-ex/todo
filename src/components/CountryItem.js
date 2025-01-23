@@ -29,21 +29,21 @@ function CountryItem({ item }) {
             )}
           </>
         ) : (
-          <p>Kein Bild verfügbar</p>
+          <div>Kein Bild verfügbar</div>
         )}
       </div>
       <div className="desc-container">
         <h3>{item.name}</h3>
-        <p>{item.id}</p>
-        <p><strong>Abkürzung:</strong> {item.abbreviation}</p>
-        <p><strong>Hauptstadt:</strong> {item.capital}</p>
-        <p><strong>Region:</strong> {item.region || 'Unbekannt'}</p>
-        <p><strong>Währung:</strong> {item.currency}</p>
-        <p><strong>Telefonvorwahl:</strong> +{item.phone}</p>
-        <p>
+        <div className='item-id'>{item.id}</div>
+        <div><strong>Abkürzung:</strong> {item.abbreviation}</div>
+        <div><strong>Hauptstadt:</strong> {item.capital}</div>
+        <div><strong>Region:</strong> {item.region || 'Unbekannt'}</div>
+        <div><strong>Währung:</strong> {item.currency}</div>
+        <div><strong>Telefonvorwahl:</strong> +{item.phone}</div>
+        <div>
           <strong>Bevölkerung:</strong>{' '}
           {item.population ? item.population.toLocaleString() : 'Nicht verfügbar'}
-        </p>
+        </div>
       </div>
     </div>
   );
