@@ -5,45 +5,24 @@
   padding: 16px;
   margin: 16px;
   border-radius: 8px;
-  background-color: #ddd;
+  background-color: #fcfbfb;
   position: relative; /* Ermöglicht absolute Positionierung */
+  width:40%;
 }
 
 .image-container {
-  display: flex;
+  
   flex-direction: column; /* Bilder werden vertikal ausgerichtet */
   align-items: flex-start; /* Bilder an der linken Seite ausrichten */
   gap: 10px; /* Abstand zwischen den Bildern */
   flex: 0 0 120px; /* Fixiert die Breite der Bildspalte */
 }
 
-.image {
-  max-width: 100px; /* Begrenzung der Bildgröße */
-  max-height: 100px;
-  object-fit: contain; /* Passt das Bild an, ohne Verzerrungen */
-  border: 2px solid #333; /* Rahmen um die Bilder */
-  border-radius: 4px; /* Abgerundete Ecken */
-  padding: 4px;
-}
 
-.image.flag {
-  order: -3; /* Flagge zuerst anzeigen */
-}
-.image.emblem {
-  position: relative;
-  right:20;
-}
-.image.orthographic {
-  
-  margin-top: 20px; /* Ein kleiner Abstand nach oben */
-  position: relative; /* Standardmäßig relativ positioniert */
-  right: 0; /* Entfernt die harte Verschiebung */
-  flex-shrink: 0; /* Verhindert, dass das Bild bei Platzmangel verkleinert wird */
-}
 
 .desc-container {
-  flex: 1; /* Beschreibung nimmt den restlichen Platz ein */
-  margin-left: 16px;
+  flex:1;
+  margin-left: 100px;
   display: flex;
   flex-direction: column; /* Text wird vertikal angeordnet */
   gap: 8px; /* Konsistenter Abstand zwischen den Textblöcken */
@@ -58,7 +37,7 @@
   padding: 4px; /* Abstand innerhalb des Rahmens */
 }
 
-.desc-container p {
+.desc-container div {
   margin: 4px 0;
   color: #000; /* Schwarzer Text */
   border: 2px solid #333; /* Schwarzer Rahmen */
@@ -69,4 +48,49 @@
 .item-id {
   position: absolute;
   right: 10px;
+  top:0px;
+  color:black;
 }
+
+.linie {
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  background-color: #000;
+  width: 2px;
+  
+}
+.left-container{
+  
+  width:50%;
+}
+.right-container{
+  background-color: rgb(0, 255, 106);
+  width:50%;
+}
+.imagetop{
+
+  width:100%;
+  
+}
+.imagebottom{
+  max-height:50%;
+  width:100%;
+  
+}
+  
+.emblem {
+width:50%;
+
+  
+}
+.orthographic {
+    width:50%;
+  
+  }
+  .flag {
+  width:100%;
+  width: 100px;
+  }
